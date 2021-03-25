@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace VogCodeChallenge.API
 {
@@ -10,10 +11,13 @@ namespace VogCodeChallenge.API
         public string LastName { get; set; }
         public string JobTitle { get; set; }
         public string Address { get; set; }
+        public virtual Department Department { get; set; }
     }
     public class Department
     {
         public int Id { get; set; }
         public string Description { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

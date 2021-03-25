@@ -1,14 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace VogCodeChallenge.API
 {
-    public class Data
+    public class DataContext : DbContext
     {
-        public Data()
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
+
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Employees = new List<Employee>
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Employee>(entity =>
             {
-                new Employee
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(50).IsUnicode(false);
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(50).IsUnicode(false);
+                entity.Property(e => e.JobTitle).IsRequired().HasMaxLength(50).IsUnicode(false);
+                entity.Property(e => e.Address).IsRequired().HasMaxLength(250).IsUnicode(false);
+
+                entity.HasOne(d => d.Department).WithMany(p => p.Employees).HasForeignKey(d => d.DepartmentId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Employees_Departments");
+
+                entity.HasData(new Employee
                 {
                     Id = 1,
                     DepartmentId = 1,
@@ -16,8 +31,8 @@ namespace VogCodeChallenge.API
                     LastName = "Parker",
                     JobTitle = "Sales Manager",
                     Address = "2267 Water Street, Kitchener, ON N2H 5A5"
-                },
-                new Employee
+                });
+                entity.HasData(new Employee
                 {
                     Id = 2,
                     DepartmentId = 2,
@@ -25,8 +40,8 @@ namespace VogCodeChallenge.API
                     LastName = "Padilla",
                     JobTitle = "Administrative assistant",
                     Address = "1884 Jasper Ave, Edmonton, AB T5J 3N6"
-                },
-                new Employee
+                });
+                entity.HasData(new Employee
                 {
                     Id = 3,
                     DepartmentId = 1,
@@ -34,8 +49,8 @@ namespace VogCodeChallenge.API
                     LastName = "Lukens",
                     JobTitle = "Associate manager",
                     Address = ""
-                },
-                new Employee
+                });
+                entity.HasData(new Employee
                 {
                     Id = 4,
                     DepartmentId = 2,
@@ -43,23 +58,24 @@ namespace VogCodeChallenge.API
                     LastName = "McCormick",
                     JobTitle = "Project Coordinator",
                     Address = "154 Carling Avenue, Ottawa, ON K1Z 7B5"
-                }
-            };
-            Departments = new List<Department>
+                });
+            });
+
+            modelBuilder.Entity<Department>(entity =>
             {
-                new Department
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(50).IsUnicode(false);
+
+                entity.HasData(new Department
                 {
                     Id = 1,
                     Description = "Sales"
-                },
-                new Department
+                });
+                entity.HasData(new Department
                 {
                     Id = 2,
                     Description = "Marketing",
-                }
-            };
+                });
+            });
         }
-        public List<Employee> Employees { get; private set; }
-        public List<Department> Departments { get; private set; }
     }
 }
