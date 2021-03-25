@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VogCodeChallenge.API", "VogCodeChallenge.API\VogCodeChallenge.API.csproj", "{578785AF-FE5D-42F2-9F49-8D3BF401791B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VogCodeChallenge.API", "VogCodeChallenge.API\VogCodeChallenge.API.csproj", "{578785AF-FE5D-42F2-9F49-8D3BF401791B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VogCodeChallenge.Console", "VogCodeChallenge.Console\VogCodeChallenge.Console.csproj", "{87B5F936-1C6A-492C-898C-995C0A4564BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{578785AF-FE5D-42F2-9F49-8D3BF401791B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578785AF-FE5D-42F2-9F49-8D3BF401791B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{578785AF-FE5D-42F2-9F49-8D3BF401791B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B5F936-1C6A-492C-898C-995C0A4564BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B5F936-1C6A-492C-898C-995C0A4564BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B5F936-1C6A-492C-898C-995C0A4564BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B5F936-1C6A-492C-898C-995C0A4564BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
