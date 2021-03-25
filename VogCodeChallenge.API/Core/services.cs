@@ -24,5 +24,6 @@ namespace VogCodeChallenge.API
 
         public IEnumerable<Employee> GetAll() => _data.Employees;
         public IList<Employee> ListAll() => _data.Employees.ToList();
+        public IEnumerable<Employee> GetByDepartment(int departmentId) => _data.Employees.Where(x => x.DepartmentId == departmentId);
     }
 }
